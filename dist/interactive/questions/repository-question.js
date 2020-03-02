@@ -1,8 +1,12 @@
-import inquirer from 'inquirer';
-import {repositoriePackages, RepositoryArgs} from "../../models";
-
-export async function repositoryQuestion(): Promise<RepositoryArgs> {
-    return inquirer.prompt([
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const inquirer_1 = __importDefault(require("inquirer"));
+const models_1 = require("../../models");
+async function repositoryQuestion() {
+    return inquirer_1.default.prompt([
         {
             type: 'input',
             name: 'entity',
@@ -21,7 +25,7 @@ export async function repositoryQuestion(): Promise<RepositoryArgs> {
             message: "What is the Spring data repository?",
             default: 'JpaRepository',
             validate: (input) => input ? true : 'The name the the Spring data repository is mandatory',
-            choices: Object.keys(repositoriePackages)
+            choices: Object.keys(models_1.repositoriePackages)
         },
         {
             name: "package",
@@ -37,3 +41,4 @@ export async function repositoryQuestion(): Promise<RepositoryArgs> {
         }
     ]);
 }
+exports.repositoryQuestion = repositoryQuestion;

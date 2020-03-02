@@ -3,7 +3,7 @@ import path from 'path';
 import {promisify} from 'util';
 import * as fs from 'fs';
 import chalk from 'chalk';
-import {RepositoryTemplate} from "./templates/repository.template";
+import {generateRepository, RepositoryTemplate} from "./templates/repository.template";
 import mustache from "mustache";
 
 const readdirAsync = promisify(fs.readdir);
@@ -34,10 +34,7 @@ export async function handleGenerateRepository(arg: RepositoryArgs) {
         entity: arg.entity,
         entityId: arg.id
     };
-    const repositoryTemplateFile = await readFileAsync(path.join(__dirname, 'templates', 'repository.mustache'));
-    const repositoryRenderized = mustache.render(repositoryTemplateFile.toString(), repositoryTemplateData);
-    const outRepository = fs.createWriteStream(path.join(repositoriesPath.file, `${name}.java`));
-    outRepository.write(repositoryRenderized);
+    await generateRepository(repositoriesPath.file, repositoryTemplateData);
 }
 
 export interface FileNode {

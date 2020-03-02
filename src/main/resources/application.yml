@@ -1,0 +1,46 @@
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: lego
+    password: lego
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    generate-ddl: true
+    open-in-view: false
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 3MB
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    debug: true
+    username: gymstatscol@gmail.com
+    password: gymstats123
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+filestorage:
+  location: C:\Test
+logging:
+  level:
+    org:
+    ##springframework: DEBUG
+    web: debug
+my:
+  uuid: ${random:uuid}
+management:
+  server:
+    port: 8081
+  endpoints:
+    web:
+      exposure:
+        include: "*"

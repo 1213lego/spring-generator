@@ -2,6 +2,7 @@ import path from "path";
 import mustache from "mustache";
 import * as fs from "fs";
 import {promisify} from 'util';
+import chalk from "chalk";
 
 const readFileAsync = promisify(fs.readFile);
 
@@ -19,4 +20,5 @@ export async function generateRepository(repositoriesPath: string, repositoryTem
     const repositoryRenderized = mustache.render(repositoryTemplateFile.toString(), repositoryTemplate);
     const outRepository = fs.createWriteStream(path.join(repositoriesPath, `${repositoryTemplate.interfaceName}.java`));
     outRepository.write(repositoryRenderized);
+    console.log(chalk.greenBright('Repository generated in ' + outRepository.path));
 }

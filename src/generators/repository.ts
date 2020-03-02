@@ -4,16 +4,12 @@ import {promisify} from 'util';
 import * as fs from 'fs';
 import chalk from 'chalk';
 import {generateRepository, RepositoryTemplate} from "./templates/repository.template";
-import mustache from "mustache";
 
 const readdirAsync = promisify(fs.readdir);
 const lstatAsync = promisify(fs.lstat);
-const readFileAsync = promisify(fs.readFile);
 
 export async function handleGenerateRepository(arg: RepositoryArgs) {
-    console.log('Generating repository ', arg);
     const project = await projectTree(process.cwd());
-    printTree(project, '');
     const repositoriesPath = searchFile(project, arg.package);
     const entityPath = searchFile(project, arg.entity + '.java');
     if (!repositoriesPath || !entityPath) {

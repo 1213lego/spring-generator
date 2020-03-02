@@ -1,6 +1,6 @@
 {
   "name": "spring-generator",
-  "version": "1.0.0",
+  "version": "1.0.7",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -12,8 +12,8 @@
     "spring-generator": "bin/index.js"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Luis Granada",
+  "license": "MIT",
   "devDependencies": {
     "@types/figlet": "^1.2.0",
     "@types/inquirer": "^6.5.0",
@@ -31,5 +31,9 @@
     "inquirer": "^7.0.5",
     "mustache": "^4.0.0",
     "yargs": "^15.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1213lego/spring-generator.git"
   }
 }

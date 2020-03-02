@@ -18,11 +18,8 @@ const chalk_1 = __importDefault(require("chalk"));
 const repository_template_1 = require("./templates/repository.template");
 const readdirAsync = util_1.promisify(fs.readdir);
 const lstatAsync = util_1.promisify(fs.lstat);
-const readFileAsync = util_1.promisify(fs.readFile);
 async function handleGenerateRepository(arg) {
-    console.log('Generating repository ', arg);
     const project = await projectTree(process.cwd());
-    printTree(project, '');
     const repositoriesPath = searchFile(project, arg.package);
     const entityPath = searchFile(project, arg.entity + '.java');
     if (!repositoriesPath || !entityPath) {

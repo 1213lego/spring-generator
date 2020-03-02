@@ -5,8 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "start-dev": "nodemon --exec ts-node src/index.ts ",
-    "start": "tsc  && node . g r --entity Bike --id String"
+    "start-dev": "nodemon --exec ts-node src/index.ts",
+    "start": "tsc  && node . g r --entity Bike --id String --name RepoTest"
   },
   "bin": {
     "spring-generator": "bin/index.js"

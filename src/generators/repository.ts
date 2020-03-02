@@ -17,7 +17,8 @@ export async function handleGenerateRepository(arg: RepositoryArgs) {
     const repositoriesPath = searchFile(project, arg.package);
     const entityPath = searchFile(project, arg.entity + '.java');
     if (!repositoriesPath || !entityPath) {
-        console.log(chalk.redBright('Couldn\'t continue. not found '));
+        console.log(chalk.redBright('Couldn\'t continue. not found ',
+            !repositoriesPath ? arg.package : arg.entity));
         process.exit(1);
     }
     let repositoryPackage = repositoriePackages[arg.repository];
@@ -26,7 +27,7 @@ export async function handleGenerateRepository(arg: RepositoryArgs) {
         package: getPackage(repositoriesPath.file),
         imports: [
             {package: repositoryPackage},
-            {package: getPackage(entityPath.file)}
+            {package: getPackage(entityPath.file).replace('.java', '')}
         ],
         interfaceName: name,
         repositoryType: arg.repository,
@@ -104,7 +105,7 @@ const searchFile = (rootNode: FileNode, baseName: string): FileNode | null => {
     if (path.basename(rootNode.file) === baseName) return rootNode;
     for (let file of rootNode.files) {
         const found = searchFile(file, baseName);
-        if (found) return file;
+        if (found) return found;
     }
     return null;
 };

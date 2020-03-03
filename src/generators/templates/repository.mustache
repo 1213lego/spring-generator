@@ -3,5 +3,5 @@ package {{ package }};
 {{#imports}}
 import {{package}};
 {{/imports}}
-public interface {{interfaceName}} extends {{repositoryType}}<{{entity}}, {{entityId}}> {
+public interface {{repositoryName}} extends {{springRepository}}<{{entity}}, {{entityId}}> {
 }

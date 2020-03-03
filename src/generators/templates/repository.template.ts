@@ -9,8 +9,8 @@ const readFileAsync = promisify(fs.readFile);
 export interface RepositoryTemplate {
     package: string,
     imports: Array<{ package: string }>,
-    interfaceName: string,
-    repositoryType: string,
+    repositoryName: string,
+    springRepository: string,
     entity: string,
     entityId: string
 }
@@ -18,7 +18,7 @@ export interface RepositoryTemplate {
 export async function generateRepository(repositoriesPath: string, repositoryTemplate: RepositoryTemplate) {
     const repositoryTemplateFile = await readFileAsync(path.join(__dirname, 'repository.mustache'));
     const repositoryRenderized = mustache.render(repositoryTemplateFile.toString(), repositoryTemplate);
-    const outRepository = fs.createWriteStream(path.join(repositoriesPath, `${repositoryTemplate.interfaceName}.java`));
+    const outRepository = fs.createWriteStream(path.join(repositoriesPath, `${repositoryTemplate.repositoryName}.java`));
     outRepository.write(repositoryRenderized);
     console.log(chalk.greenBright('Repository generated in ' + outRepository.path));
 }

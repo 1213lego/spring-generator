@@ -1,15 +1,15 @@
 {
-  "name": "spring-generator",
-  "version": "1.0.7",
+  "name": "spring-g",
+  "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
     "start-dev": "nodemon --exec ts-node src/index.ts",
-    "start": "tsc  && node . i --r"
+    "start": "tsc  && node ."
   },
   "bin": {
-    "spring-generator": "bin/index.js"
+    "spring-g": "bin/index.js"
   },
   "keywords": [],
   "author": "Luis Granada",

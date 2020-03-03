@@ -42,3 +42,29 @@ async function repositoryQuestion() {
     ]);
 }
 exports.repositoryQuestion = repositoryQuestion;
+async function repositoriesFromEntitiesQuestion() {
+    return inquirer_1.default.prompt([
+        {
+            type: 'input',
+            name: 'domainNameFolder',
+            message: 'What is the name of the Entities folder?',
+            default: 'domain',
+            validate: (input) => input ? true : 'The name of entities folder is mandatory'
+        },
+        {
+            type: "list",
+            name: "springDataRepository",
+            message: "What is the Spring data repository?",
+            default: 'JpaRepository',
+            validate: (input) => input ? true : 'The name the the Spring data repository is mandatory',
+            choices: Object.keys(models_1.repositoriePackages)
+        },
+        {
+            name: "repositoriesFolderName",
+            type: "input",
+            message: "What is your Repository folder?",
+            default: "repository"
+        }
+    ]);
+}
+exports.repositoriesFromEntitiesQuestion = repositoriesFromEntitiesQuestion;
